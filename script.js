@@ -12,6 +12,7 @@
 
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
+        removeButton.classList.add('removeButton');
         removeButton.onclick = () => removeTodo(index);
 
         const updateButton = document.createElement('button');
