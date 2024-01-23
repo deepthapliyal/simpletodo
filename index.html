@@ -7,64 +7,8 @@
 </head>
 <body>
 
-  <div>
-    <h2>Simple Todo List</h2>
-    <ul></ul>
-    <div>
-      <input
-        type="text"
-        id="newTodo"
-        placeholder="Add a new todo"
-      />
-      <button>Add Todo</button>
-      <button>Delete All</button>
-    </div>
-  </div>
-
-  <script>
-    const todos = [];
-
-    function renderTodos() {
-      const todoList = document.getElementById('todoList');
-      todoList.innerHTML = '';
-      
-      todos.forEach((todo, index) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = todo;
-        
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'Remove';
-        removeButton.onclick = () => removeTodo(index);
-        
-        listItem.appendChild(removeButton);
-        todoList.appendChild(listItem);
-      });
-    }
-
-    function addTodo() {
-      const newTodoInput = document.getElementById('newTodo');
-      const newTodo = newTodoInput.value.trim();
-      
-      if (newTodo !== '') {
-        todos.push(newTodo);
-        newTodoInput.value = '';
-        renderTodos();
-      }
-    }
-
-    function removeTodo(index) {
-      todos.splice(index, 1);
-      renderTodos();
-    }
-
-    function deleteAllTodos() {
-      todos.length = 0; // Clear the array
-      renderTodos();
-    }
-
-    // Initial rendering
-    renderTodos();
-  </script>
+    <h2>Hello world</h2>
+  
 
 </body>
 </html>
