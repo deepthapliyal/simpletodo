@@ -1,56 +1,67 @@
-const todos = [];
 
-function renderTodos() {
-  const todoList = document.getElementById('todoList');
-  todoList.innerHTML = '';
+    // Retrieve todos from localStorage on page load
+    const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-  todos.forEach((todo, index) => {
-    const listItem = document.createElement('li');
-    listItem.textContent = todo;
+    function renderTodos() {
+      const todoList = document.getElementById('todoList');
+      todoList.innerHTML = '';
 
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
-    removeButton.onclick = () => removeTodo(index);
+      todos.forEach((todo, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = todo;
 
-    const updateButton = document.createElement('button');
-    updateButton.textContent = 'Update';
-    updateButton.onclick = () => updateTodo(index);
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.onclick = () => removeTodo(index);
 
-    listItem.appendChild(removeButton);
-    listItem.appendChild(updateButton);
-    todoList.appendChild(listItem);
-  });
-}
+        const updateButton = document.createElement('button');
+        updateButton.textContent = 'Update';
+        updateButton.onclick = () => updateTodo(index);
 
-function addTodo() {
-  const newTodoInput = document.getElementById('newTodo');
-  const newTodo = newTodoInput.value.trim();
+        listItem.appendChild(removeButton);
+        listItem.appendChild(updateButton);
+        todoList.appendChild(listItem);
+      });
+      
+      // Save todos to localStorage after rendering
+      saveToLocalStorage();
+    }
 
-  if (newTodo !== '') {
-    todos.push(newTodo);
-    newTodoInput.value = '';
+    function addTodo() {
+      const newTodoInput = document.getElementById('newTodo');
+      const newTodo = newTodoInput.value.trim();
+
+      if (newTodo !== '') {
+        todos.push(newTodo);
+        newTodoInput.value = '';
+        renderTodos();
+      }
+    }
+
+    function removeTodo(index) {
+      todos.splice(index, 1);
+      renderTodos();
+    }
+
+    function updateTodo(index) {
+      const updatedTodo = prompt('Update todo:', todos[index]);
+
+      if (updatedTodo !== null) {
+        todos[index] = updatedTodo.trim();
+        renderTodos();
+      }
+    }
+
+    function deleteAllTodos() {
+      todos.length = 0; // Clear the array
+      renderTodos();
+    }
+
+    function saveToLocalStorage() {
+      // Save todos to localStorage
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+
+    // Initial rendering
     renderTodos();
-  }
-}
-
-function removeTodo(index) {
-  todos.splice(index, 1);
-  renderTodos();
-}
-
-function updateTodo(index) {
-  const updatedTodo = prompt('Update todo:', todos[index]);
-
-  if (updatedTodo !== null) {
-    todos[index] = updatedTodo.trim();
-    renderTodos();
-  }
-}
-
-function deleteAllTodos() {
-  todos.length = 0; // Clear the array
-  renderTodos();
-}
-
-// Initial rendering
-renderTodos();
+  
