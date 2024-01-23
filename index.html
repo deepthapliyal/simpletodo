@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+</head>
+<body>
+
+  <div>
+    <h2>Simple Todo List</h2>
+    <ul id="todoList"></ul>
+    <div>
+      <input
+        type="text"
+        id="newTodo"
+        placeholder="Add a new todo"
+      />
+      <button onclick="addTodo()">Add Todo</button>
+    </div>
+  </div>
+
+  <script>
+    const todos = [];
+
+    function renderTodos() {
+      const todoList = document.getElementById('todoList');
+      todoList.innerHTML = '';
+      
+      todos.forEach((todo, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = todo;
+        
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.onclick = () => removeTodo(index);
+        
+        listItem.appendChild(removeButton);
+        todoList.appendChild(listItem);
+      });
+    }
+
+    function addTodo() {
+      const newTodoInput = document.getElementById('newTodo');
+      const newTodo = newTodoInput.value.trim();
+      
+      if (newTodo !== '') {
+        todos.push(newTodo);
+        newTodoInput.value = '';
+        renderTodos();
+      }
+    }
+
+    function removeTodo(index) {
+      todos.splice(index, 1);
+      renderTodos();
+    }
+
+    // Initial rendering
+    renderTodos();
+  </script>
+
+</body>
+</html>
