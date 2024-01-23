@@ -17,6 +17,7 @@
         placeholder="Add a new todo"
       />
       <button onclick="addTodo()">Add Todo</button>
+      <button onclick="deleteAllTodos()">Delete All</button>
     </div>
   </div>
 
@@ -53,6 +54,11 @@
 
     function removeTodo(index) {
       todos.splice(index, 1);
+      renderTodos();
+    }
+
+    function deleteAllTodos() {
+      todos.length = 0; // Clear the array
       renderTodos();
     }
 
