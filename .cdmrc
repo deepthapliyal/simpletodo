@@ -1,1 +1,2 @@
 terminal-one: static-server -p $PUBLIC_PORT --no-cache
+tabs: ['index.html']
