@@ -1,6 +1,6 @@
 
     // Retrieve todos from localStorage on page load
-    const todos = JSON.parse(localStorage.getItem('todos')) || [];
+    const todos = [];
 
     function renderTodos() {
       const todoList = document.getElementById('todoList');
@@ -59,7 +59,6 @@
 
     function saveToLocalStorage() {
       // Save todos to localStorage
-      localStorage.setItem('todos', JSON.stringify(todos));
     }
 
     // Initial rendering
