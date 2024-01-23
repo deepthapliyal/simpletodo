@@ -1,2 +1,2 @@
 terminal-one: static-server -p $PUBLIC_PORT --no-cache
-tabs:['styles.css']
+tabs: ['styles.css']
