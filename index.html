@@ -9,17 +9,21 @@
 
   <div>
     <h2>Simple Todo List</h2>
-    <ul></ul>
+    <ul id="todoList"></ul>
     <div>
       <input
         type="text"
         id="newTodo"
         placeholder="Add a new todo"
       />
-      <button onclick="addTodo">Add Todo</button>
-      <button onclick="deleteAllTodo">Delete All</button>
+      <button onclick="addTodo()">Add Todo</button>
+    </div>
+    <div>
+      <button onclick="deleteAllTodos()">Delete All</button>
     </div>
   </div>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
